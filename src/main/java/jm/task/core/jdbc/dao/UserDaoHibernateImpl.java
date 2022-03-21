@@ -32,7 +32,6 @@ public class UserDaoHibernateImpl implements UserDao {
         }
     }
 
-
     @Override
     public void dropUsersTable() {
         try (Session session = getSessionFactory().openSession()) {
@@ -82,14 +81,14 @@ public class UserDaoHibernateImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try (Session session = getSessionFactory().openSession()) {
+
             users = session.createQuery("FROM User").list();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return users;
     }
-
-
 
     @Override
     public void cleanUsersTable() {

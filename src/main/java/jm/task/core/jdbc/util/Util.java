@@ -18,7 +18,7 @@ public class Util {
     private static final String USER = "bestuser";
     private static final String PASSWORD = "bestuser";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DIALECT = "org.hibernate.dialect.MySQL5Dialect";
+    private static final String DIALECT = "org.hibernate.dialect.MySQL8Dialect";
 
     //Hibernate
     private static SessionFactory sessionFactory;
