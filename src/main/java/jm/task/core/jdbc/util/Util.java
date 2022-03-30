@@ -20,8 +20,10 @@ public class Util {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DIALECT = "org.hibernate.dialect.MySQL8Dialect";
 
+    private static Connection connection = null;
+    private static SessionFactory sessionFactory = null;
+
     //Hibernate
-    private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -52,9 +54,14 @@ public class Util {
         return sessionFactory;
     }
 
+    public static void closeSessionFactory() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
+    }
+
     //JDBC
     public static Connection getConnection () {
-        Connection connection = null;
 
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -65,5 +72,11 @@ public class Util {
             System.out.println("Соединение не установлено");
         }
         return connection;
+    }
+
+    public static void closeConnection() throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
     }
 }
